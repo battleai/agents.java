@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package battleAI.grpc;
+
+service ConnectFourAgent {
+    rpc move (ConnectFour.Game) returns (ConnectFour.Move);
+}
+
+message ConnectFour {
+    message Move {
+        uint32 move = 1; //[0-6] which of the 7 columns to play.
+    }
+    message Game {
+        string id = 1; //A unique id that identifies a game.
+        repeated Move moves = 3; //All moves played so far, e.g. [0,1,0] would represent a board with 2 player 1 stones in the first column, and a single player 2 stone in the second column.
+    }
+}
